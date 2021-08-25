@@ -4,4 +4,4 @@
 require '../vendor/autoload.php';
 
 
-echo "test";
+echo "ceci est un test";
