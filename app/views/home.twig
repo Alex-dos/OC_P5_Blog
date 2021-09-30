@@ -1,0 +1,260 @@
+{%extends 'templates/layout.twig' %}
+
+{% block head %}
+	<title>Home - AC🖤EUR</title>
+{% endblock %}
+
+{% block content %}
+
+	{% block main %}
+		<!-- Begin Main Content -->
+		<div
+			class="main-content">
+			<!-- Begin About Me Section -->
+			<div class="section-light about-me" id="about-me">
+				<div class="container">
+					<div class="column is-12 about-me">
+						<h1 class="title has-text-centered section-title">À propos de moi</h1>
+					</div>
+					<div class="columns is-multiline">
+						<div class="column is-6 has-vertically-aligned-content" data-aos="fade-right">
+							<p class="is-larger">
+								&emsp;&emsp;<strong>Développeur web chez Weloge</strong>
+							</p>
+							<br/>
+							<p>
+								Après avoir fait 9 semaines en apprentissage intensif (bootcamp) en développement web au sein du Wagon Marseille : HTML, CSS, Bootstrap, JavaScript ES6, SQL, git, GitHub, Heroku et Ruby on Rails,
+																																																																																																		je suis actuellement developpeur junior avec openclassrooms dans le parcours PHP et je travaille chez
+								<a href="https://we-loge.com" target="_blank">Weloge</a>
+								en tant que developpeur web.
+							</p>
+							<br/>
+							<div class="is-divider"></div>
+							<div class="columns about-links">
+								<div class="column">
+									<p class="heading">
+										<strong>Téléphone</strong>
+									</p>
+									<p class="subheading">
+										07-81-54-47-81
+									</p>
+								</div>
+								<div class="column">
+									<p class="heading">
+										<strong>Email</strong>
+									</p>
+									<p class="subheading">
+										leonedimars@gmail.com
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="column is-6 right-image " data-aos="fade-left">
+							<img class="is-rounded" src="https://picsum.photos/id/366/600/375" alt=""/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End About Me Content -->
+			<div class="section-dark resume">
+				<div class="container">
+					<div class="columns is-multiline" data-aos="fade-in" data-aos-easing="linear">
+						<div class="column is-12 about-me">
+							<h1 class="title has-text-centered section-title">
+								Télécharger mon C.V
+							</h1>
+						</div>
+						<div class="column is-10 has-text-centered is-offset-1">
+							<h2 class="subtitle">
+								Ci-dessous vous pouvez télécharger mon Curriculum vitæ
+							</h2>
+							<form action="../download/cv_alex" target="_blank">
+								<button class="button">
+									Télécharger &emsp;<i class="fad fa-download fa-lg"></i>
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+
+
+		{% block services %}
+			<!-- Begin Services Content -->
+			<div class="section-color services" id="services">
+				<div class="container">
+					<div class="columns is-multiline">
+						<div class="column is-12 about-me" data-aos="fade-in" data-aos-easing="linear">
+							<h1 class="title has-text-centered section-title">Services</h1>
+
+							<h2 class="subtitle has-text-centered">
+								Quelles sont mes missions en tant que développeur web ?
+							</h2>
+							<br/>
+						</div>
+						<div class="columns is-12">
+							<div class="column is-4 has-text-centered" data-aos="fade-in" data-aos-easing="linear">
+								<i class="far fa-chart-bar"></i>
+								<hr/>
+								<h2>
+									Analyse des besoins du client, afin d'avoir le site ou l'application qui soit la plus pertinante possible, il est essentiel que je prenne le temps de vous écouter et d'échanger pour comprendre au mieux vos besoins.
+								</h2>
+							</div>
+							<div class="column is-4 has-text-centered" data-aos="fade-in" data-aos-easing="linear">
+								<i class="fas fa-book-reader"></i>
+								<hr/>
+								<h2>
+									Participation à l’élaboration du cahier des charges, en effet je peux élaborer un cahier des charges propre et détaillé en incluant les diagrammes UML ainsi que les schemas de base de donnée.
+								</h2>
+							</div>
+							<div class="column is-4 has-text-centered" data-aos="fade-in" data-aos-easing="linear">
+								<i class="fas fa-rocket fa-3x"></i>
+								<hr/>
+								<h2>
+									La préparation au référencement naturel, choix d’un nom de domaine référençable, 
+																					choix du champ lexical à utiliser et des mots clés																																																																																																																																																																																																																																																																																																														bonnes pratiques de rédaction du contenu (favorisant un référencement en longue traîne)																																																																																																																																																																																																																																																																																																																																												
+																											bonnes pratiques de rédaction des titres et des descriptifs.
+								</h2>
+							</div>
+						</div>
+						<hr/>
+						<div class="columns is-12">
+							<div class="column is-4 has-text-centered" data-aos="fade-in" data-aos-easing="linear">
+								<i class="fas fa-palette"></i>
+								<hr/>
+								<h2>
+									Conception graphique et web design, grâce à notre partenaire
+									<a href="https://www.studio-cesure.com" target="_blank">studio césure</a>
+									la charte graphique, la création de logo et visuels peuvent être réalisé directement en fonction de vos besoins.
+								</h2>
+							</div>
+							<div class="column is-4 has-text-centered" data-aos="fade-in" data-aos-easing="linear">
+								<i class="fas fa-tools"></i>
+								<hr/>
+								<h2>
+									Suivi technique et maintenance du site internet ou de l’application web en fonction des besoins.
+								</h2>
+							</div>
+							<div class="column is-4 has-text-centered" data-aos="fade-in" data-aos-easing="linear">
+								<i class="fas fa-code fa-3x"></i>
+								<hr/>
+								<h2>
+									Phase de développement web : conception d’un site web ou d’une application
+								</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End Services Content -->
+		{% endblock %}
+
+
+		{% block skills %}
+        <!-- Begin Skills Content -->
+<div class="section-light skills" id="skills">
+	<div class="container">
+		<div class="columns is-multiline">
+			<div class="column is-12 about-me">
+				<h1 class="title has-text-centered section-title">Skills</h1>
+			</div>
+			<div class="column is-6" data-aos="fade-in" data-aos-easing="linear">
+				<h1>Visual Studio Code</h1>
+				<progress class="progress" value="70" max="100">70%</progress>
+			<h1>Figma</h1>
+			<progress class="progress" value="30" max="100">30%</progress>
+		<h1>PhpMyAdmin</h1>
+		<progress class="progress" value="45" max="100">45%</progress>
+	<h1>Wordpress</h1>
+	<progress class="progress" value="60" max="100">60%</progress></html></div><div class="column is-6" data-aos="fade-in" data-aos-easing="linear"><h1>HTML</h1><progress class="progress" value="70" max="100">70%</progress><h1>CSS</h1><progress class="progress" value="50" max="100">50%</html></body></progress><h1>Php</h1><progress class="progress" value="40" max="100">40%</progress><h1>Ruby</h1><progress class="progress" value="30" max="100">30%</progress></div></div> </div></div><!-- End Skills Content -->
+
+        {% endblock %}
+
+
+
+
+
+{% block work_content %}
+<!-- Begin Work Content -->
+<div class="section-dark my-work" id="my-work">
+	<div class="container">
+		<div class="columns is-multiline" data-aos="fade-in" data-aos-easing="linear">
+			<div class="column is-12">
+				<h1 class="title has-text-centered section-title">Mes projets</h1>
+			</div>
+			<div class="column is-4">
+				<a href="http://www.ideall.net/" target="_blank">
+					<figure class="image is-2by1 work-item" style="background-image: url('images/ideall.png');"></figure>
+				</a>
+			</div>
+			<div class="column is-4">
+				<a href="https://chaletsandcaviar.live-website.com/" target="_blank">
+					<figure class="image is-2by1 work-item" style="background-image: url('images/chalet_and_caviar.png');"></figure>
+				</a>
+			</div>
+			<div class="column is-4">
+				<a href="http://www.we-loge.com">
+					<figure class="image is-2by1 work-item" style="background-image: url('images/weloge_canafran.png');"></figure>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Work Content -->
+{% endblock %}
+
+{% block contact %}
+	<!-- Begin Contact Content -->
+	<div class="section-light contact" id="contact">
+		<div class="container">
+			<div class="columns is-multiline" data-aos="fade-in-up" data-aos-easing="linear">
+				<div class="column is-12 about-me">
+					<h1 class="title has-text-centered section-title">
+						Contactez-moi
+					</h1>
+				</div>
+				<div class="column is-8 is-offset-2">
+					<form action="" method="POST">
+						<div class="field">
+							<label class="label">Nom</label>
+							<div class="control has-icons-left">
+								<input class="input" type="text" placeholder="Ex. Jean Untel" name="Name"/>
+								<span class="icon is-small is-left">
+									<i class="fas fa-user"></i>
+								</span>
+							</div>
+						</div>
+						<div class="field">
+							<label class="label">Email</label>
+							<div class="control has-icons-left">
+								<input class="input" type="email" placeholder="Ex. hello@mail.com" name="Email"/>
+								<span class="icon is-small is-left">
+									<i class="fas fa-envelope"></i>
+								</span>
+							</div>
+						</div>
+						<div class="field">
+							<label class="label">Message</label>
+							<div class="control">
+								<textarea class="textarea" placeholder="Zone de texte" name="Message"></textarea>
+							</div>
+						</div>
+						<div class="field">
+							<div class="control ">
+								<button class="button submit-button">
+									Envoyer&nbsp;&nbsp;
+									<i class="fas fa-paper-plane"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Contact Content -->
+</div>{% endblock %}
+
+
+	{% endblock %}

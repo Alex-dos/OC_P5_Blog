@@ -1,28 +1,36 @@
 <?php
 
-// autoload
-require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-use App\Controller\BlogController;
-use App\Routes\Router;
+/**
+ * Front controller
+ *
+ * PHP version 7.0
+ */
 
-//Debug mode
-$whoops = new \Whoops\Run;
-$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
-$whoops->register();
-
-// var_dump(dirname(__DIR__));
-// die;
-
-$controller = new BlogController();
-
-//Router
-$router = new Router('toto');
+/**
+ * Composer
+ */
+require dirname(__DIR__) . '/vendor/autoload.php';
 
 
-$router->get('/', 'App\Controller\BlogController@index');
-$router->get('/posts/:id', 'App\Controller\BlogController@show');
+/**
+ * Error and Exception handling
+ */
+error_reporting(E_ALL);
+set_error_handler('Core\Error::errorHandler');
+set_exception_handler('Core\Error::exceptionHandler');
 
 
-//verify matching routes
-$router->run();
+/**
+ * Routing
+ */
+$router = new Core\Router();
+
+// Add the routes
+$router->add('', ['controller' => 'Home', 'action' => 'index']);
+$router->add('home', ['controller' => 'Home', 'action' => 'index']);
+$router->add('blog', ['controller' => 'Blog', 'action' => 'render']);
+$router->add('{controller}/{action}');
+
+
+$router->dispatch($_SERVER['QUERY_STRING']);
