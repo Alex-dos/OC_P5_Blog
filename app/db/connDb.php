@@ -1,10 +1,10 @@
 <?php
 
-$host = "192.168.64.2";
+$host = "127.0.0.1";
 $db = "blog_db";
-$user = "alex";
-$psw = "1304";
-$port = "3306";
+$user = "root";
+$psw = "root";
+$port = "8889";
 $charset = "utf8mb4";
 $dsn = "mysql:host=$host;dbname=$db;port=$port;charset=$charset";
 $options = [
