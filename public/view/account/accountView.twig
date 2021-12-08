@@ -1,0 +1,53 @@
+{% extends 'template_back.twig'%}
+{% block title %}Espace utilisateur
+{% endblock %}
+{% block content %}
+	<section class="mb-0">
+		<div class="container">
+			<h3 class="title has-text-centered">Vos commentaires</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<td>Lien vers l'article</td>
+						<td>Auteur</td>
+						<td>Commentaire</td>
+						<td>Etat</td>
+						<td>Action</td>
+					</tr>
+				</thead>
+				<tbody>
+					{% for data_comment in data_comments %}
+						<tr>
+							<td>
+								<a class="button is-link is-light" href="/article-{{data_comment.postId}}">Lien</a>
+							</td>
+							<td>{{data_comment.author}}</td>
+							<td>{{data_comment.comment}}</td>
+							<td>
+								{% if data_comment.commentValid == 0 %}
+									<div class="notification is-danger is-light" role="alert">
+										En attente de validation
+									</div>
+								{% else %}
+									<div class="notification is-success is-light" role="alert">
+										Vaildé
+									</div>
+								{% endif %}
+							</td>
+							<td>
+								<a class="button is-success is-light mb-1" href="/user-comment-{{data_comment.id}}">
+									Modifier
+								</a>
+								<a class="button is-danger is-light mb-1" href="/user-removeComment-{{data_comment.id}}">
+									Supprimer
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+		</div>
+
+	</section>
+{% endblock %}

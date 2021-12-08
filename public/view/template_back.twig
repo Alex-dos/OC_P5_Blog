@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>
+			{% block title %}{% endblock %}
+		</title>
+
+		<link rel="shortcut icon" href="public/img/favicon/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="public/img/favicon/favicon.png" type="image/png">
+		<link rel="icon" sizes="32x32" href="public/img/favicon/favicon-32.png" type="image/png">
+		<link rel="icon" sizes="64x64" href="public/img/favicon/favicon-64.png" type="image/png">
+		<link
+		rel="icon" sizes="96x96" href="public/img/favicon/favicon-96.png" type="image/png">
+
+		<!-- Bootstrap core CSS -->
+		<link
+		href="/public/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+		<!-- Bulma Version 0.9.0-->
+		<link
+		rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css"/>
+
+
+		<!-- Custom fonts for this template -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+		<link
+		href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+		<!-- Plugin CSS -->
+		<link
+		href="/public/vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
+
+		<!-- Custom styles for this template -->
+		<link rel="stylesheet" type="text/css" href="/public/css/showcase.css"/>
+	</head>
+
+	<body
+		id="page-top">
+
+		<!-- Navigation -->
+		{% include 'components/header_back.twig' %}
+
+		{% if session.flash.danger is defined %}
+			<div class="alert alert-danger" role="alert">
+				<h6>{{ session.flash.danger }}</h6>
+			</div>
+		{% endif %}
+		{% if session.flash.success is defined %}
+			<div class="alert alert-success" role="alert">
+				<h6>{{ session.flash.success }}</h6>
+			</div>
+		{% endif %}
+
+		{% block content %}{% endblock %}
+
+		{% include 'components/footer.twig' %}
+
+
+		<!-- Bootstrap core JavaScript -->
+		<script src="/public/vendor/jquery/jquery.min.js"></script>
+		<script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+		<!-- Plugin JavaScript -->
+		<script src="/public/vendor/jquery-easing/jquery.easing.min.js"></script>
+		<script src="/public/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+		<!-- Contact Form JavaScript -->
+		<script src="/public/js/jqBootstrapValidation.js"></script>
+
+		<!-- Custom scripts for this template -->
+		<script src="/public/js/showcase.js"></script>
+		<script src="/public/js/freelancer.min.js"></script>
+
+		<!-- Font awesome script -->
+		<script src="https://kit.fontawesome.com/31609863f8.js" crossorigin="anonymous"></script>
+
+		<!-- Jquery -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+		<!-- Aos for scroll effect -->
+		<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+		<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+		<script>
+			AOS.init();
+		</script>
+		<script>
+			AOS.init({easing: "ease-out", duration: 800});
+		</script>
+	</body>
+</html>

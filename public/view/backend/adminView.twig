@@ -1,0 +1,124 @@
+{% extends 'template_back.twig'%}
+{% block title %}Interface Admin
+{% endblock %}
+{% block content %}
+	<div class="container">
+		<h1 class="title has-text-centered">Interface admin</h1>
+	</div>
+	<section class="mb-0">
+
+		<p>
+			<a href="/admin-post" class="button is-primary is-light mb-5 mt-5">Ajouter un article</a>
+		</p>
+
+
+		<div class="container mb-5">
+			<div class="box">
+				<h1 class="title m-4">Gestion des Posts :
+				</h1>
+				<table class="table">
+					<thead>
+						<tr>
+							<td>ID</td>
+							<td>Titre</td>
+							<td>Dernière modification</td>
+							<td>Action</td>
+						</tr>
+					</thead>
+					<tbody>
+						{% for data_post in data_posts %}
+							<tr>
+								<td>
+									{{data_post.id}}</td>
+								<td>
+									{{data_post.title}}</td>
+								<td>
+									{{data_post.creationDate}}</td>
+								<td>
+									<a class="button is-info is-light mb-2" href="admin-previewPost-{{data_post.id}}">Modifier</a>
+									<form onclick="return confirm('Voulez‑vous vraiment supprimer ce post ?');" action="/admin-delete" method="post">
+										<input type="hidden" name="postId" value="{{data_post.id}}">
+										<button class="button is-danger is-light mb-2" href="" type="submit">Supprimer</button>
+									</form>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+		<div class="container mb-5">
+			<div class="box">
+				<h1 class="title m-4">Gestion des commentaires :
+				</h1>
+				<table class="table">
+					<thead>
+						<tr>
+							<td>ID</td>
+							<td>Auteur</td>
+							<td>Commentaire</td>
+							<td>Action</td>
+						</tr>
+					</thead>
+					<tbody>
+						{% for data_comment in data_comments %}
+							<tr>
+								<td>
+									{{data_comment.id}}</td>
+								<td>
+									{{data_comment.author}}</td>
+								<td>
+									{{data_comment.comment}}</td>
+								<td>
+									<form action="/admin-commentValid" method="post">
+										<input type="hidden" name="id" value="{{data_comment.id}}">
+										<button class="button is-success is-light mb-2" href="" type="submit">Valider</button>
+									</form>
+									<a onclick="return confirm('Voulez‑vous vraiment supprimer ce commentaire ?');" href="/admin-deleteComment-{{data_comment.id}}" method="post">
+										<input type="hidden" name="id" value="{{data_comment.id}}">
+										<button class="button is-danger is-light" href="" type="submit">Refuser</button>
+									</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</tbody>
+	</div>
+
+
+	<div class="container mb-5">
+		<div class="box">
+			<h1 class="title m-4">Gestion des utilisateurs :
+			</h1>
+			<table class="table">
+				<thead>
+					<tr>
+						<td>ID</td>
+						<td>Nom</td>
+					</tr>
+				</thead>
+				<tbody>
+					{% for data_user in data_users %}
+						<tr>
+							<td>
+								{{data_user.id}}</td>
+							<td>
+								{{data_user.username}}</td>
+							<td>
+								<a onclick="return confirm('Voulez‑vous vraiment supprimer cet utilisateur ?');" href="/admin-deleteUser-{{data_user.id}}" method="post">
+									<input type="hidden" name="id" value="{{data_user.id}}">
+									<button onclick="confirmation()" id="alert-button" class="button is-danger is-light mt-1" href="" type="submit">Supprimer</button>
+								</a>
+							</td>
+						</tr>
+					</td>
+				</tbody>
+			</tr>
+		{% endfor %}
+
+	</table>
+</div></section>{% endblock %}

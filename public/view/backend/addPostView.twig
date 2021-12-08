@@ -1,0 +1,54 @@
+{% extends 'template_back.twig'%}
+{% block title %}Admin interface
+{% endblock %}
+{% block content %}
+	<section id="contact">
+		<h5 class="title has-text-centered">Ajouter un article</h5>
+		<div class="columns is-centered">
+			<hr class="star-dark mb-5">
+			<div class="column is-5-tablet is-4-desktop is-4-widescreen">
+				<form action="admin-addPost" method="post">
+					<div class="field">
+						<div class="control">
+							<label class="label">Titre</label>
+							<input class="input" id="titre" name="title" placeholder="Titre de l'article" required="required" type="text">
+							<p class="help-block text-danger"></p>
+						</div>
+					</div>
+					<div class="field">
+						<div class="control">
+							<label class="label">Contenu de l'article</label>
+							<textarea class="textarea" id="message" name="content" placeholder="Contenu de l'article" required="required" rows="10"></textarea>
+							<p class="help-block text-danger"></p>
+						</div>
+					</div>
+					<div class="field">
+						<div class="control">
+							<label class="label">Aperçu de l'article</label>
+							<textarea class="textarea" id="message" name="chapo" placeholder="Aperçu de l'article(Chapo)" required="required" rows="5"></textarea>
+							<p class="help-block text-danger"></p>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<label class="input-group-text" for="inputGroupSelect01">Auteur</label>
+						</div>
+						<select class="custom-select" id="id_author" name="id_author">
+							<option value="{{data_post.idAuthor}}" name="id_author">{{data_post.idAuthor}}
+								-
+								{{data_post.author}}</option>
+							{% for data_author in data_authors %}
+								<option value="{{data_author.id}}" name="id_author">{{data_author.id}}
+									-
+									{{data_author.author}}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<div>
+						<button class="button is-primary is-light mt-4 mb-4" id="sendMessageButton" type="submit">Envoyer</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div></section></div>{% endblock %}

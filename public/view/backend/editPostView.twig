@@ -1,0 +1,58 @@
+{% extends 'template_back.twig'%}
+{% block title %}Admin interface
+{% endblock %}
+{% block content %}
+	<section id="contact">
+		<div class="container">
+			<h5 class="title has-text-centered">Modifier un article</h5>
+			<hr class="star-dark mb-5">
+			<div class="row">
+				<div class="col-lg-8 mx-auto">
+					<form action="/admin-editPost-{{data_post.id}}" method="post">
+						<div class="control-group">
+							<div class="form-group floating-label-form-group controls mb-0 pb-2">
+								<label>Titre</label>
+								<input class="form-control" type="text" id="titre" name="title" value="{{data_post.title}}" required="required">
+								<p class="help-block text-danger"></p>
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="form-group floating-label-form-group controls mb-0 pb-2">
+								<label>Contenu de l'article</label>
+								<textarea class="form-control" id="message" name="content" required="required" rows="10">
+									{{data_post.content}}</textarea>
+								<p class="help-block text-danger"></p>
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="form-group floating-label-form-group controls mb-0 pb-2">
+								<label>Aperçu de l'article</label>
+								<textarea class="form-control" id="message" name="chapo" required="required" rows="5">
+									{{data_post.chapo}}</textarea>
+								<p class="help-block text-danger"></p>
+							</div>
+						</div>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<label class="input-group-text" for="inputGroupSelect01">Auteur</label>
+							</div>
+							<select class="custom-select" id="id_author" name="id_author">
+								<option value="{{data_post.idAuthor}}" name="id_author">{{data_post.idAuthor}}
+									-
+									{{data_post.author}}</option>
+								{% for data_author in data_authors %}
+									<option value="{{data_author.id}}" name="id_author">{{data_author.id}}
+										-
+										{{data_author.author}}</option>
+								{% endfor %}
+							</select>
+						</div>
+						<div class="form-group">
+							<button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Modifier</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>{% endblock %}

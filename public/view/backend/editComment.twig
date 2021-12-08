@@ -1,0 +1,61 @@
+{% extends 'template_back.twig'%}
+{% block title %}Modifier votre commentaire
+{% endblock %}
+{% block content %}
+	<header class="masthead bg-primary text-white text-center">
+		<div class="container">
+			<h1>Mon super blog !</h1>
+			<p>
+				<a href="index.php">Modifier votre commentaire</a>
+			</p>
+		</div>
+	</header>
+
+	<section class="portfolio" id="portfolio">
+
+		<div class="container">
+			<p>
+				<strong>{{data_comment.author}}</strong>
+				le
+				{{data_comment.commentDate}}</p>
+			<p>{{data_comment.comment}}</p>
+		</div>
+	</section>
+
+	<section id="contact">
+		<div class="container">
+			<h5 class="text-center text-uppercase text-secondary mb-0">Modifier votre commentaire</h5>
+			<hr class="star-dark mb-5">
+			<div class="row">
+				<div class="col-lg-8 mx-auto">
+
+					<form action="/admin-editComment-{{data_comment.id}}" method="post">
+
+
+						<div class="control-group">
+							<div class="form-group floating-label-form-group controls mb-0 pb-2">
+								<label for="author">Auteur</label>
+								<input class="form-control" type="text" id="author" name="author" value="{{data_comment.author}}" required="required">
+								<p class="help-block text-danger"></p>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<div class="form-group floating-label-form-group controls mb-0 pb-2">
+								<label>Commentaire</label>
+								<textarea class="form-control" id="message" name="comment" rows="5" required="required">{{data_comment.comment}}</textarea>
+								<p class="help-block text-danger"></p>
+							</div>
+						</div>
+
+						<div id="success"></div>
+
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">Envoyer</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>{% endblock %}

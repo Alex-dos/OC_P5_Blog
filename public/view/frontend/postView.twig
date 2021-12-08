@@ -1,0 +1,95 @@
+{% extends 'template_blog.twig'%}
+{% block title %}Article
+{% endblock %}
+{% block content %}
+	<section class="portfolio" id="portfolio">
+		<div class="container post-view">
+			<h3 class="title has-text-centered">
+				{{data_post.title}}
+			</h3>
+			<div class="subheader-content has-text-centered">
+				Par :
+				<em>
+					{{data_post.author}}
+					<em>
+						le
+						<em>
+							{{data_post.creationDate}}</em>
+					</div>
+					<hr>
+					<p class="lead">
+						{{data_post.content | raw}}
+					</p>
+				</div>
+				<hr>
+				<h3 class="subtitle m-5 has-text-centered">Commentaires</h3>
+				{% for data_comment in data_comments %}
+					<div class="container mb-5">
+						<p class="subtitle">
+							<strong>
+								{{data_comment.author}}
+							</strong>
+							le
+							<em>
+								{{data_comment.commentDate}}
+								{% if data_user.id == data_comment.idUser and data_user.status != 1 %}
+									(<a href="user-comment-{{data_comment.id}}">Modifier</a>)
+								{% endif %}
+								{% if data_user.status == 1 %}
+									(<a href="admin-comment-{{data_comment.id}}">Modifier</a>)
+																																																																																																																																																																																																																																																																																																																																																																																		(<a href="admin-deleteComment-{{data_comment.id}}">Supprimer</a>)
+								{% endif %}
+							</p>
+						</p>
+						<p>
+							{{data_comment.comment}}
+						</p>
+					</div>
+				{% endfor %}
+			</section>
+			{% if data_user.id > 0 %}
+				<section id="contact">
+					<div class="container">
+						<hr class="star-dark mb-5">
+						<h5 class="subtitle m-5 has-text-centered">Ajouter un commentaire</h5>
+						<div class="row">
+							<div class="col-lg-8 mx-auto">
+								<form action="/user-addComment-{{data_post.id}}" method="post">
+									<div class="field">
+										<div class="label">
+											<label for="author">Auteur</label>
+											<input readonly="" class="input" type="text" id="author" name="author" value="{{data_user.username}}" required="required"/>
+											<p class="help-block text-danger"></p>
+										</div>
+									</div>
+									<div class="field">
+										<div class="label">
+											<label>Commentaire</label>
+											<textarea class="textarea" id="message" name="comment" placeholder="Commentaire" required="required" rows="5"></textarea>
+											<p class="help-block text-danger"></p>
+										</div>
+									</div>
+									<div id="success"></div>
+									<div class="form-group">
+										<button class="button" id="sendMessageButton" type="submit">Envoyer</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% else %}
+				<section id="contact">
+					<div class="container">
+						<h5 class="subheader-content has-text-centered">
+							<a href="/login">Connectez-vous</a>
+							pour
+																																																																																																																																																																																																																																																																																										commenter</h5>
+					</div>
+					<hr>
+					<p>
+						<a class="button m-3" href="/blog">Retour au blog</a>
+					</p>
+				{% endif %}
+			</section>
+		{% endblock %}

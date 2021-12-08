@@ -1,0 +1,13 @@
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteCond %{REQUEST_FILENAME} !favicon.ico$
+RewriteCond %{REQUEST_FILENAME} !magnific-popup.css$
+RewriteCond %{REQUEST_FILENAME} !all.min.css$
+RewriteCond %{REQUEST_FILENAME} !bootstrap.scss$
+RewriteCond %{REQUEST_FILENAME} !vendor/scss/*$
+
+
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]

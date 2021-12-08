@@ -1,0 +1,93 @@
+{% extends 'template_blog.twig'%}
+{% block title %}Espace utilisateur
+{% endblock %}
+{% block content %}
+	<div class="container">
+		<h1 class="title has-text-centered">Espace utilisateur</h1>
+	</div>
+
+	<div class="container mt-4 mb-5">
+		<div class="columns is-centered">
+			<div class="column is-5-tablet is-4-desktop is-3-widescreen">
+				<h5 class="subtile has-text-centered mb-2 ">CONNEXION</h5>
+				<form action="" method="post">
+					<div class="field">
+						<p class="control has-icons-left has-icons-right">
+							<input class="input" placeholder="Pseudo" type="text" name="username" required="required">
+							<span class="icon is-small is-left">
+								<i class="fas fa-user"></i>
+							</span>
+						</p>
+					</div>
+					<div class="field">
+						<p class="control has-icons-left">
+							<input class="input" type="password" placeholder="Mot de passe" type="password" name="password" required="required">
+							<span class="icon is-small is-left">
+								<i class="fas fa-lock"></i>
+							</span>
+						</p>
+					</div>
+					<div class="field">
+						<p class="control">
+							<div class="has-text-centered">
+								<button type="submit" class="button is-primary is-light">
+									Login
+								</button>
+							</p>
+						</p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="container">
+	<div class="columns is-centered">
+		<div class="column is-5-tablet is-4-desktop is-4-widescreen">
+			<h5 class="subtile has-text-centered mt-5 mb-2">Pas encore inscrit ?</h5>
+			<hr class="star-dark mb-5">
+			<div class="row">
+				<div class="col-lg-8 mx-auto">
+					<form action="/register" method="post">
+						<div class="field">
+							<div class="label">
+								<label>Pseudo</label>
+								<input class="input" type="text" id="pseudo" name="username" placeholder="Votre Pseudo" required="required">
+								<p class="help-block text-danger"></p>
+							</div>
+						</div>
+						<div class="field">
+							<div class="label">
+								<label>Email</label>
+								<input class="input" type="email" name="email" placeholder="Email" required="required" data-validation-required-message="Please enter your email address.">
+								<p class="help-block text-danger"></p>
+							</div>
+						</div>
+						<div class="field">
+							<div class="label">
+								<label>Mot de passe</label>
+								<input class="input" type="password" name="password" placeholder="Mot de passe" required="required">
+								<p class="help-block text-danger"></p>
+							</div>
+						</div>
+						<div class="field">
+							<div class="label">
+								<label>Confirmer Mot de passe</label>
+								<input class="input" type="password" name="password_confirm" placeholder="Confirmer Mot de passe" required="required">
+								<p class="help-block text-danger"></p>
+							</div>
+						</div>
+
+						<div id="success"></div>
+
+						<div class="control m-4 has-text-centered">
+							<button type="submit" class="button is-primary is-light" id="sendMessageButton">S'inscrire</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>{% endblock %}

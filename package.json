@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "aos": "^2.3.4"
+  },
+  "devDependencies": {
+    "@vizuaalog/bulmajs": "^0.12.1"
+  }
+}
