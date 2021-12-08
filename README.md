@@ -1,5 +1,7 @@
 # Blog
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ab9771a0c4d14be5a22fea3874eadae0)](https://app.codacy.com/gh/Alex-dos/OC_P5_Blog?utm_source=github.com&utm_medium=referral&utm_content=Alex-dos/OC_P5_Blog&utm_campaign=Badge_Grade_Settings)
+
 ## Pré-requis : 
 
 * PHP 7, MySQL, Apache.
