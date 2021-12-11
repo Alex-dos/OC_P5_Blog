@@ -120,6 +120,7 @@ class FrontendController
         $pagesTotales = ceil($articlesTotales / $articlesParPage);
         $_SESSION['pagestotales'] = $pagesTotales;
 
+
         if (empty($_GET['page'])) {
             $_GET['page'] = 1;
         }
@@ -130,7 +131,9 @@ class FrontendController
         $pageCourante = $_GET['page'];
         $depart = ($pageCourante - 1) * $articlesParPage;
 
+
         $list_posts = $this->postManager->getPosts($depart, $articlesParPage);
+
 
         $this->renderer->render('frontend/listPostView', ['listposts' => $list_posts, 'pagestotales' => $pagesTotales, 'pagecourante' => $pageCourante]);
         $_SESSION['flash'] = array();

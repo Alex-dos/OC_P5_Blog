@@ -2,24 +2,21 @@
 
 namespace App\Service;
 
-$conf = parse_ini_file(__DIR__ . '/../../config.ini', true);
-
-var_dump($conf);
 
 abstract class Database
 {
-    // const DB_HOST = 'mysql:host=127.0.0.1;dbname=blog_db2;charset=utf8;port=8889';
-    // const DB_USER = 'root';
-    // const DB_PASS = 'root';
+    const DB_HOST = '';
+    const DB_USER = '';
+    const DB_PASS = '';
 
 
-    // public function parseIni()
-    // {
-    // $conf = parse_ini_file(__DIR__ . '/../../config.ini', true);
-    // const DB_HOST = $conf['host'];
-    // const DB_USER = $conf['user'];
-    // const DB_PASS = $conf['pass'];    
-    // {
+    public function parseIni()
+    {
+        $conf = parse_ini_file(__DIR__ . '/../../config.ini', true);
+        $this->DB_HOST = $conf['database']['host'];
+        $this->DB_USER = $conf['database']['user'];
+        $this->DB_PASS = $conf['database']['pass'];
+    }
 
     private $connection;
 
@@ -35,7 +32,8 @@ abstract class Database
     private function getConnection()
     {
         try {
-            $this->connection = new \PDO(self::DB_HOST, self::DB_USER, self::DB_PASS);
+            $this->parseIni();
+            $this->connection = new \PDO($this->DB_HOST, $this->DB_USER, $this->DB_PASS);
             $this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
             return $this->connection;
