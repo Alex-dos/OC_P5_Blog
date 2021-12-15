@@ -47,6 +47,6 @@ try {
 } catch (\Exception $e) {
     $errorMessage = $e->getMessage();
     $_SESSION['errorMessage'] = $errorMessage;
-    header('HTTP/1.1 404 Not Found');
+    // header('HTTP/1.1 404 Not Found');
     header('Location: /404');
 }
