@@ -1,7 +1,8 @@
-[![SymfonyInsight](https://insight.symfony.com/projects/73a8e5ac-2505-49af-9340-9793c4def080/mini.svg)](https://insight.symfony.com/projects/73a8e5ac-2505-49af-9340-9793c4def080) <img src="https://scrutinizer-ci.com/g/jucarre/blog/badges/quality-score.png?b=branche-V2" alt="Scrutinizer Code Quality" /> <img src="https://scrutinizer-ci.com/g/jucarre/blog/badges/code-intelligence.svg?b=branche-V2" alt="Code Intelligence Status" /> <img src="https://scrutinizer-ci.com/g/jucarre/blog/badges/build.png?b=branche-V2" alt="Build Status" />
 Blog
 
-Pré-requis :
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ab9771a0c4d14be5a22fea3874eadae0)](https://app.codacy.com/gh/Alex-dos/OC_P5_Blog?utm_source=github.com&utm_medium=referral&utm_content=Alex-dos/OC_P5_Blog&utm_campaign=Badge_Grade_Settings)
+
+Pré-requis : 
 
 -PHP 7, MySQL, Apache.
 
