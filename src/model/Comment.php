@@ -7,7 +7,6 @@ class Comment
     private $id;
     private $postId;
     private $idUser;
-    private $author;
     private $comment;
     private $commentDate;
     private $commentValid;
@@ -72,25 +71,6 @@ class Comment
         return $this;
     }
 
-    /**
-     * Get the value of author.
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
-
-    /**
-     * Set the value of author.
-     *
-     * @return self
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
-
-        return $this;
-    }
 
     /**
      * Get the value of comment.

@@ -61,13 +61,11 @@ class AccountController
 
     public function addComment($id)
     {
-        $author = $this->verif->check($_POST['author']);
-
         $comment = $this->verif->check($_POST['comment']);
 
         $idUser = $this->verif->check($_SESSION['auth']->getId());
 
-        $affectedLines = $this->commentManager->postComment($id, $idUser, $author, $comment);
+        $affectedLines = $this->commentManager->postComment($id, $idUser, $comment);
 
         if ($affectedLines === false) {
             $_SESSION['flash']['danger'] = 'Impossible d\'ajouter le commentaire !';
@@ -79,11 +77,9 @@ class AccountController
 
     public function editComment($id)
     {
-        $author = $this->verif->check($_POST['author']);
-
         $comment = $this->verif->check($_POST['comment']);
 
-        $affectedLines = $this->commentManager->updateComment($id, $author, $comment);
+        $affectedLines = $this->commentManager->updateComment($id, $comment);
 
         if ($affectedLines === false) {
             $_SESSION['flash']['danger'] = 'Impossible de modifier le commentaire !';

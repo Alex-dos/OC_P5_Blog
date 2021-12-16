@@ -5,12 +5,12 @@
 	<section class="portfolio" id="portfolio">
 		<div class="container post-view">
 			<h3 class="title has-text-centered">
-				{{data_post.title}}
+				{{data_post.username}}
 			</h3>
 			<div class="subheader-content has-text-centered">
 				Par :
 				<em>
-					{{data_post.author}}
+					{{author.username}}
 					<em>
 						le
 						<em>
@@ -37,7 +37,7 @@
 								{% endif %}
 								{% if data_user.status == 1 %}
 									(<a href="admin-comment-{{data_comment.id}}">Modifier</a>)
-																																																																																																																																																																																																																																																																																																																																																																																		(<a href="admin-deleteComment-{{data_comment.id}}">Supprimer</a>)
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								(<a href="admin-deleteComment-{{data_comment.id}}">Supprimer</a>)
 								{% endif %}
 							</p>
 						</p>
@@ -84,7 +84,7 @@
 						<h5 class="subheader-content has-text-centered">
 							<a href="/login">Connectez-vous</a>
 							pour
-																																																																																																																																																																																																																																																																																										commenter</h5>
+																																																																																																																																																																																																																																																																																																																																																																																																			commenter</h5>
 					</div>
 					<hr>
 					<p>
