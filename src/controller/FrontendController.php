@@ -7,10 +7,12 @@ use App\Manager\CommentManager;
 use App\Manager\FormManager;
 use App\Manager\LoginAccountManager;
 use App\Manager\PostManager;
-use App\Manager\UserManager;
 // use App\Service\MailerService;
 use App\Validator\FunctionValidator;
 use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\Transport;
+use Symfony\Component\Mime\Email;
+
 
 /**
  * FrontendController est le controller de la parti public du Blog.
@@ -23,7 +25,6 @@ class FrontendController
     private $postManager;
     private $commentManager;
     private $formManager;
-    private $userManager;
 
     public function __construct()
     {
@@ -33,7 +34,6 @@ class FrontendController
         $this->postManager = new PostManager();
         $this->commentManager = new CommentManager();
         $this->formManager = new FormManager();
-        $this->userManager = new UserManager();
 
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -150,7 +150,6 @@ class FrontendController
     public function post($id)
     {
         $post = $this->postManager->getPost($id);
-        $author = $this->userManager->getUserById($post->getIdUser());
         $comments = $this->commentManager->getComments($id);
 
         if (isset($_SESSION['auth'])) {
@@ -163,8 +162,7 @@ class FrontendController
             $user = ['id' => 0, 'username' => 0, 'status' => 0];
         }
 
-
-        $this->renderer->render('frontend/postView', ['data_post' => $post, 'data_comments' => $comments, 'data_user' => $user, 'author' => $author]);
+        $this->renderer->render('frontend/postView', ['data_post' => $post, 'data_comments' => $comments, 'data_user' => $user]);
         $_SESSION['flash'] = array();
     }
 
@@ -217,6 +215,20 @@ class FrontendController
 
     public function mailSend()
     {
-        new Mailer();
+        $conf = parse_ini_file(__DIR__ . '/../../config.ini', true);
+        $transport = Transport::fromDsn($conf["phpmail"]['smtp']);
+
+
+        $mailer = new Mailer($transport);
+
+        // On crée le mail avec toutes les données
+        $email = (new Email())
+            ->from('hello@example.com')
+            ->to('you@example.com')
+            ->subject('Time for Symfony Mailer!')
+            ->text('Sending emails is fun again!')
+            ->html('<p>See Twig integration for better HTML integration!</p>');
+
+        $mailer->send($email);
     }
 }
