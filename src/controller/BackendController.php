@@ -57,6 +57,13 @@ class BackendController
         }
     }
 
+    public function viewAddPost()
+    {
+        $data_users = $this->postManager->getAllUsers();
+
+        $this->renderer->render('backend/addPostView', ['data_users' => $data_users]);
+    }
+
     public function commentValid()
     {
         $id = $this->verif->check($_POST['id']);
@@ -74,12 +81,6 @@ class BackendController
 
 
 
-    public function viewAddPost()
-    {
-        $data_authors = $this->postManager->getAllAuthors();
-
-        $this->renderer->render('backend/addPostView', ['data_authors' => $data_authors]);
-    }
 
     public function addPostManager()
     {
@@ -87,13 +88,11 @@ class BackendController
 
         $chapo = $this->verif->checkForContent($_POST['chapo']);
 
-        $idAuthor = $this->verif->check($_POST['id_author']);
-
         $content = $this->verif->checkForContent($_POST['content']);
 
         $idUser = $this->verif->check($_SESSION['auth']->getId());
 
-        $affectedLines = $this->postManager->addpost($title, $idAuthor, $chapo, $content, $idUser);
+        $affectedLines = $this->postManager->addpost($title, $chapo, $content, $idUser);
         if ($affectedLines === false) {
             $_SESSION['flash']['danger'] = 'Impossible d\'ajouter cette article.';
         } else {
@@ -105,9 +104,9 @@ class BackendController
     public function post($id)
     {
         $data_post = $this->postManager->getPost($id);
-        $data_authors = $this->postManager->getAllAuthors();
+        $data_username = $this->postManager->getAllUsers();
 
-        $this->renderer->render('backend/editPostView', ['data_post' => $data_post, 'data_authors' => $data_authors]);
+        $this->renderer->render('backend/editPostView', ['data_post' => $data_post, 'data_username' => $data_username]);
         $_SESSION['flash'] = array();
     }
 
@@ -117,13 +116,11 @@ class BackendController
 
         $chapo = $this->verif->checkForContent($_POST['chapo']);
 
-        $idAuthor = $this->verif->check($_POST['id_author']);
-
         $content = $this->verif->checkForContent($_POST['content']);
 
         $idUser = $this->verif->check($_SESSION['auth']->getId());
 
-        $affectedLines = $this->postManager->setPost($id, $title, $idAuthor, $chapo, $content, $idUser);
+        $affectedLines = $this->postManager->setPost($id, $title, $chapo, $content, $idUser);
         if ($affectedLines === false) {
             $_SESSION['flash']['danger'] = 'Impossible de modifier cette article.';
         } else {
@@ -155,11 +152,9 @@ class BackendController
 
     public function editComment($id)
     {
-        $author = $this->verif->check($_POST['author']);
-
         $comment = $this->verif->check($_POST['comment']);
 
-        $affectedLines = $this->commentManager->updateComment($id, $author, $comment);
+        $affectedLines = $this->commentManager->updateComment($id, $comment);
 
         if ($affectedLines === false) {
             $_SESSION['flash']['danger'] = 'Impossible de modifier le commentaire !';

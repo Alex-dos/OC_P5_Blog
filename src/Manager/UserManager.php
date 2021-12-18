@@ -44,4 +44,18 @@ class UserManager extends Database
 
         return $result;
     }
+
+
+    public function getUserById($id)
+    {
+        $sql = 'SELECT id, username FROM users WHERE id = :id';
+        $parameters = [
+            ':id' => $id,
+        ];
+        $result = $this->sql($sql, $parameters);
+
+        $row = $result->fetch();
+
+        return $row;
+    }
 }

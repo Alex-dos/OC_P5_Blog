@@ -7,6 +7,7 @@ use App\Manager\CommentManager;
 use App\Manager\FormManager;
 use App\Manager\LoginAccountManager;
 use App\Manager\PostManager;
+use App\Manager\UserManager;
 // use App\Service\MailerService;
 use App\Validator\FunctionValidator;
 use Symfony\Component\Mailer\Mailer;
@@ -22,6 +23,7 @@ class FrontendController
     private $postManager;
     private $commentManager;
     private $formManager;
+    private $userManager;
 
     public function __construct()
     {
@@ -31,6 +33,7 @@ class FrontendController
         $this->postManager = new PostManager();
         $this->commentManager = new CommentManager();
         $this->formManager = new FormManager();
+        $this->userManager = new UserManager();
 
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -147,6 +150,7 @@ class FrontendController
     public function post($id)
     {
         $post = $this->postManager->getPost($id);
+        $author = $this->userManager->getUserById($post->getIdUser());
         $comments = $this->commentManager->getComments($id);
 
         if (isset($_SESSION['auth'])) {
@@ -159,7 +163,8 @@ class FrontendController
             $user = ['id' => 0, 'username' => 0, 'status' => 0];
         }
 
-        $this->renderer->render('frontend/postView', ['data_post' => $post, 'data_comments' => $comments, 'data_user' => $user]);
+
+        $this->renderer->render('frontend/postView', ['data_post' => $post, 'data_comments' => $comments, 'data_user' => $user, 'author' => $author]);
         $_SESSION['flash'] = array();
     }
 
