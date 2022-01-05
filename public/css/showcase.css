@@ -386,3 +386,9 @@ body.preloader-site {
   justify-content: space-between;
   padding: 0.5rem 1rem;
 }
+
+.alert-success {
+  margin-left: 700px !important;
+  color: green !important;
+  font-size: 40px !important;
+}

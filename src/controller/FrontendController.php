@@ -231,4 +231,41 @@ class FrontendController
 
         $mailer->send($email);
     }
+
+
+    // /**
+    //  * Traite le formulaire de contact de la page d'accueil.
+    //  */
+    public function contactForm()
+
+    {
+        $conf = parse_ini_file(__DIR__ . '/../../config.ini', true);
+        $transport = Transport::fromDsn($conf["phpmail"]['smtp']);
+
+
+        $name = $_POST["nom"];
+        $message = $_POST["message"];
+        $mail = $_POST["email"];
+
+        $mailer = new Mailer($transport);
+
+        // On crée le mail avec toutes les données
+        $email = (new Email())
+            ->from('hello@example.com')
+            ->to('you@example.com')
+            ->subject("Message du blog Alexandre Dosseto")
+            ->html("<h1>Bonjour Alex<h1>
+                        <br>
+                            <h3>Vous avez reçu un mail qui provient du formulaire de contact de votre blog PHP </h3><br>
+                                     De : {$name}<br>
+                                            Son e-Mail : {$mail} 
+                                                <br>
+                                                    Son message : <br>{$message}");
+
+        $mailer->send($email);
+
+        $_SESSION['flash']['success'] = "Votre formulaire a bien été envoyer.";
+
+        header('Location: /');
+    }
 }
