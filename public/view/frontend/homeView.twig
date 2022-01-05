@@ -216,11 +216,13 @@
 					</h1>
 				</div>
 				<div class="column is-8 is-offset-2">
-					<form action="" method="POST">
+					<form action="/contactform" method="post">
 						<div class="field">
 							<label class="label">Nom</label>
 							<div class="control has-icons-left">
-								<input class="input" type="text" placeholder="Ex. Jean Untel" name="Name"/>
+								<input class="input"type="text" placeholder="Nom" name="nom" required="required"
+                 				 	data-validation-required-message="Veuillez entrer votre nom.">
+                				<p class="help-block text-danger"></p>
 								<span class="icon is-small is-left">
 									<i class="fas fa-user"></i>
 								</span>
@@ -229,7 +231,9 @@
 						<div class="field">
 							<label class="label">Email</label>
 							<div class="control has-icons-left">
-								<input class="input" type="email" placeholder="Ex. hello@mail.com" name="Email"/>
+								<input class="input" type="email" name="email" placeholder="Email" required="required"
+                 					 data-validation-required-message="Veuillez entrer votre adresse email.">
+                				<p class="help-block text-danger"></p>
 								<span class="icon is-small is-left">
 									<i class="fas fa-envelope"></i>
 								</span>
@@ -238,7 +242,9 @@
 						<div class="field">
 							<label class="label">Message</label>
 							<div class="control">
-								<textarea class="textarea" placeholder="Zone de texte" name="Message"></textarea>
+								<textarea class="textarea" name="message" rows="5" placeholder="Message" required="required"
+                 					 data-validation-required-message="Veuillez entrer votre message."></textarea>
+                				<p class="help-block text-danger"></p></textarea>
 							</div>
 						</div>
 						<div class="field">
@@ -254,62 +260,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- End Contact Content -->
-
-
-	<!-- Contact Section -->
-  <section id="contact">
-    <div class="container">
-      <h2 class="text-center text-uppercase text-secondary mb-0">Me contater</h2>
-      <hr class="star-dark mb-5">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-          <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-          <form action="/contactform" method="post">
-            <div class="control-group">
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label>Nom</label>
-                <input class="form-control" type="text" placeholder="Nom" name="nom" required="required"
-                  data-validation-required-message="Veuillez entrer votre nom">
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            <div class="control-group">
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label>Prenom test</label>
-                <input class="form-control" type="text" placeholder="Prenom" name="prenom" required="required"
-                  data-validation-required-message="Veuillez entrer votre prenom.">
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            <div class="control-group">
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label>Email</label>
-                <input class="form-control" type="email" name="email" placeholder="Email" required="required"
-                  data-validation-required-message="Veuillez entrer votre adresse email.">
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            <div class="control-group">
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label>Message</label>
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required="required"
-                  data-validation-required-message="Veuillez entrer votre message."></textarea>
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            <br>
-            <div id="success"></div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-xl">Envoyer</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
   {% endblock %}
 
 

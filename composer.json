@@ -7,7 +7,7 @@
             "App\\": "src"
         }
     },
-       "require": {
+    "require": {
         "twig/twig": "^2.0",
         "symfony/mailer": "^5.3",
         "symfony/google-mailer": "^5.3",

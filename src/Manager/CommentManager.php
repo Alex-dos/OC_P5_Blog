@@ -19,7 +19,7 @@ class CommentManager extends Database
      */
     public function getComments($postId)
     {
-        $sql = 'SELECT id, id_user, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y \') AS comment_date_fr FROM comments WHERE post_id = :postId and valid = 1 ORDER BY comment_date DESC';
+        $sql = 'SELECT id, id_user, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y \') AS comment_date_fr FROM comments WHERE post_id = :postId and valid = 1 ORDER BY comment_date DESC';
         $parameters = [':postId' => $postId];
         $result = $this->sql($sql, $parameters);
 
@@ -42,7 +42,7 @@ class CommentManager extends Database
      */
     public function getComment($commentId)
     {
-        $sql = 'SELECT id, id_user, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y \') AS comment_date_fr FROM comments WHERE id = :commentId';
+        $sql = 'SELECT id, id_user, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y \') AS comment_date_fr FROM comments WHERE id = :commentId';
         $parameters = [':commentId' => $commentId];
         $result = $this->sql($sql, $parameters);
 
@@ -64,7 +64,7 @@ class CommentManager extends Database
      */
     public function getUserComment($userId)
     {
-        $sql = 'SELECT id, post_id, author, comment, valid,DATE_FORMAT(comment_date, \'%d/%m/%Y \') AS comment_date_fr FROM comments WHERE id_user = :userId ORDER BY comment_date DESC';
+        $sql = 'SELECT id, post_id, comment, valid,DATE_FORMAT(comment_date, \'%d/%m/%Y \') AS comment_date_fr FROM comments WHERE id_user = :userId ORDER BY comment_date DESC';
         $parameters = [':userId' => $userId];
         $result = $this->sql($sql, $parameters);
 
@@ -83,15 +83,14 @@ class CommentManager extends Database
      *
      * @param int    $id
      * @param int    $userId
-     * @param string $author
      * @param string $comment
      *
      * @return mixed
      */
-    public function postComment($id, $userId, $author, $comment)
+    public function postComment($id, $userId, $comment)
     {
-        $sql = 'INSERT INTO comments(post_id, id_user, author, comment, comment_date, valid) VALUES(?, ?, ?, ?, NOW(), 0)';
-        $parameters = [$id, $userId, $author, $comment];
+        $sql = 'INSERT INTO comments(post_id, id_user, comment, comment_date, valid) VALUES(?, ?, ?, ?, NOW(), 0)';
+        $parameters = [$id, $userId, $comment];
         $result = $this->sql($sql, $parameters);
 
         return $result;
@@ -101,19 +100,17 @@ class CommentManager extends Database
      * modifie un commentaire existant et le passe non-valide.
      *
      * @param int    $commentId
-     * @param string $author
      * @param string $comment
      *
      * @return mixed
      */
-    public function updateComment($commentId, $author, $comment)
+    public function updateComment($commentId, $comment)
     {
         $date = date('Y-m-d');
 
-        $sql = 'UPDATE comments SET author = :author, comment = :comment ,comment_date = :comment_date ,valid = 0 WHERE id = :id';
+        $sql = 'UPDATE comments SET user = :username, comment = :comment ,comment_date = :comment_date ,valid = 0 WHERE id = :id';
         $parameters = [
             ':id' => $commentId,
-            ':author' => $author,
             ':comment' => $comment,
             ':comment_date' => $date,
         ];
@@ -129,7 +126,7 @@ class CommentManager extends Database
      */
     public function getCommentsInvalid()
     {
-        $sql = 'SELECT id, author, comment FROM comments WHERE valid = 0 ORDER BY comment_date DESC ';
+        $sql = 'SELECT id, comment FROM comments WHERE valid = 0 ORDER BY comment_date DESC ';
         $result = $this->sql($sql);
 
         $comments = [];
@@ -189,7 +186,6 @@ class CommentManager extends Database
         $comment = new Comment();
 
         $comment->setId($row['id']);
-        $comment->setAuthor($row['author']);
         $comment->setComment($row['comment']);
 
         if (!empty($row['post_id'])) {

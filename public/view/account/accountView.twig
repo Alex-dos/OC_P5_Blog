@@ -9,7 +9,6 @@
 				<thead>
 					<tr>
 						<td>Lien vers l'article</td>
-						<td>Auteur</td>
 						<td>Commentaire</td>
 						<td>Etat</td>
 						<td>Action</td>
@@ -21,7 +20,6 @@
 							<td>
 								<a class="button is-link is-light" href="/article-{{data_comment.postId}}">Lien</a>
 							</td>
-							<td>{{data_comment.author}}</td>
 							<td>{{data_comment.comment}}</td>
 							<td>
 								{% if data_comment.commentValid == 0 %}

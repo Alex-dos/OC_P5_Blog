@@ -3,7 +3,6 @@
 namespace App\Manager;
 
 use App\Model\Post;
-use App\Model\Author;
 use App\Service\Database;
 
 /**
@@ -56,21 +55,20 @@ class PostManager extends Database
     public function getPost($postId)
     {
         $sql = 'SELECT posts.id, 
-                    posts.id_author, 
                     posts.title, 
                     posts.chapo, 
                     posts.content, 
-                    posts.id_user, 
-                    authors.author, 
+                    posts.id_user,
                     DATE_FORMAT(creation_date, \'%d/%m/%Y \') AS creation_date_fr 
                     FROM posts 
-                    LEFT JOIN authors on posts.id_author = authors.id
+                    LEFT JOIN users on posts.id_user = users.id
                     WHERE posts.id = :postId';
 
         $parameters = [':postId' => $postId];
         $result = $this->sql($sql, $parameters);
 
         $row = $result->fetch();
+
 
         if ($row) {
             return $this->buildObject($row);
@@ -110,15 +108,16 @@ class PostManager extends Database
      *
      * @return mixed
      */
-    public function setPost($id, $title, $idAuthor, $chapo, $content, $idUser)
+    public function setPost($id, $title, $chapo, $content, $idUser)
     {
-        $sql = 'UPDATE posts SET title = :title, id_author = :id_author, chapo = :chapo, content = :content, id_user = :iduser ,creation_date = NOW() WHERE id = :id';
-        $parameters = [':id' => $id,
-        ':id_author' => $idAuthor,
-        ':title' => $title,
-        ':chapo' => $chapo,
-        ':content' => $content,
-        ':iduser' => $idUser, ];
+        $sql = 'UPDATE posts SET title = :title = chapo = :chapo, content = :content, id_user = :iduser ,creation_date = NOW() WHERE id = :id';
+        $parameters = [
+            ':id' => $id,
+            ':title' => $title,
+            ':chapo' => $chapo,
+            ':content' => $content,
+            ':iduser' => $idUser,
+        ];
         $result = $this->sql($sql, $parameters);
 
         return $result;
@@ -134,14 +133,15 @@ class PostManager extends Database
      *
      * @return mixed
      */
-    public function addPost(string $title, $idAuthor, $chapo, $content, $idUser)
+    public function addPost(string $title, $chapo, $content, $idUser)
     {
-        $sql = 'INSERT INTO posts (title, id_author, chapo, content, id_user, creation_date) VALUES (:title, :id_author, :chapo, :content, :iduser, NOW())';
-        $parameters = [':title' => $title,
-        ':id_author' => $idAuthor,
+        $sql = 'INSERT INTO posts (title, chapo, content, id_user, creation_date) VALUES (:title, :chapo, :content, :iduser, NOW())';
+        $parameters = [
+            ':title' => $title,
             ':chapo' => $chapo,
             ':content' => $content,
-            ':iduser' => $idUser, ];
+            ':iduser' => $idUser,
+        ];
         $result = $this->sql($sql, $parameters);
 
         return $result;
@@ -177,12 +177,6 @@ class PostManager extends Database
         $article->setId($row['id']);
         $article->setTitle($row['title']);
 
-        if (!empty($row['id_author'])) {
-            $article->setidAuthor($row['id_author']);
-        }
-        if (!empty($row['author'])) {
-            $article->setAuthor($row['author']);
-        }
         if (!empty($row['id_user'])) {
             $article->setIdUser($row['id_user']);
         }
@@ -200,38 +194,38 @@ class PostManager extends Database
     }
 
     /**
-     * Retourne tout les auteurs de la Bdd.
+     * Retourne tout les auteurs.
      *
      * @return array
      */
-    public function getAllAuthors()
+    public function getAllUsers()
     {
-        $sql = 'SELECT * FROM authors';
+        $sql = 'SELECT * FROM users';
         $result = $this->sql($sql);
 
-        $authors = [];
+        $users = [];
 
         foreach ($result as $row) {
-            $authorId = $row['id'];
-            $authors[$authorId] = $this->buildObjectAuthor($row);
+            $userId = $row['id'];
+            $users[$userId] = $this->buildObjectUser($row);
         }
 
-        return $authors;
+        return $users;
     }
 
     /**
-     * Construit l'objet Author.
+     * Construit l'objet user.
      *
      * @param array $row
      *
      * @return mixed
      */
-    private function buildObjectAuthor($row)
+    private function buildObjectUser($row)
     {
-        $author = new Author();
-        $author->setId($row['id']);
-        $author->setAuthor($row['author']);
+        $user = new user();
+        $user->setId($row['id']);
+        $user->setuser($row['user']);
 
-        return $author;
+        return $user;
     }
 }
