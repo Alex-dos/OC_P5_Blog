@@ -2,8 +2,11 @@
 
 namespace App\Manager;
 
+use App\Model\Author;
 use App\Model\Post;
+use App\Model\User;
 use App\Service\Database;
+use DateTime;
 
 /**
  * PostManager regroupe tout les requêtes lié aux articles du Blog.
@@ -108,16 +111,23 @@ class PostManager extends Database
      *
      * @return mixed
      */
-    public function setPost($id, $title, $chapo, $content, $idUser)
+    public function setPost($id, $title, $chapo, $content, $idUser, $idAuthor)
     {
-        $sql = 'UPDATE posts SET title = :title = chapo = :chapo, content = :content, id_user = :iduser ,creation_date = NOW() WHERE id = :id';
+        $sql = 'UPDATE posts SET title = :title, chapo = :chapo, content = :content, id_user = :iduser , id_author = :idauthor, creation_date = :creationdate WHERE id = :id';
+
+        $date = new DateTime('now');
+        $date_formated = $date->format('Y-m-d');
+
         $parameters = [
             ':id' => $id,
             ':title' => $title,
             ':chapo' => $chapo,
             ':content' => $content,
             ':iduser' => $idUser,
+            ':idauthor' => $idAuthor,
+            ':creationdate' => $date_formated
         ];
+
         $result = $this->sql($sql, $parameters);
 
         return $result;
@@ -129,18 +139,19 @@ class PostManager extends Database
      * @param string $title
      * @param string $chapo
      * @param string $content
-     * @param int    $idUser
-     *
+     * @param int $idUser
+     * @param $idAuthor
      * @return mixed
      */
-    public function addPost(string $title, $chapo, $content, $idUser)
+    public function addPost(string $title, $chapo, $content, $idUser, $idAuthor)
     {
-        $sql = 'INSERT INTO posts (title, chapo, content, id_user, creation_date) VALUES (:title, :chapo, :content, :iduser, NOW())';
+        $sql = 'INSERT INTO posts (title, chapo, content, id_user, id_author, creation_date) VALUES (:title, :chapo, :content, :iduser, :idauthor, NOW())';
         $parameters = [
             ':title' => $title,
             ':chapo' => $chapo,
             ':content' => $content,
             ':iduser' => $idUser,
+            ':idauthor' => $idAuthor,
         ];
         $result = $this->sql($sql, $parameters);
 
@@ -198,33 +209,33 @@ class PostManager extends Database
      *
      * @return array
      */
-    public function getAllUsers()
+    public function getAllAuthors()
     {
-        $sql = 'SELECT * FROM users';
+        $sql = 'SELECT * FROM authors';
         $result = $this->sql($sql);
 
-        $users = [];
+        $authors = [];
 
         foreach ($result as $row) {
-            $userId = $row['id'];
-            $users[$userId] = $this->buildObjectUser($row);
+            $authorId = $row['id'];
+            $authors[$authorId] = $this->buildObjectAuthor($row);
         }
 
-        return $users;
+        return $authors;
     }
 
     /**
-     * Construit l'objet user.
+     * Construit l'objet author.
      *
      * @param array $row
      *
      * @return mixed
      */
-    private function buildObjectUser($row)
+    private function buildObjectAuthor($row)
     {
-        $user = new user();
+        $user = new Author();
         $user->setId($row['id']);
-        $user->setuser($row['user']);
+        $user->setAuthor($row['author']);
 
         return $user;
     }

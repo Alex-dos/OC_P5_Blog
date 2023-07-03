@@ -15,7 +15,7 @@ class UserManager extends Database
      *
      * @param int $id id de l'utilisateur
      *
-     * @return array $user
+     * @return $user
      */
     public function getUser($id, $username)
     {

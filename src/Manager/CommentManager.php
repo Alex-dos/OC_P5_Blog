@@ -89,7 +89,7 @@ class CommentManager extends Database
      */
     public function postComment($id, $userId, $comment)
     {
-        $sql = 'INSERT INTO comments(post_id, id_user, comment, comment_date, valid) VALUES(?, ?, ?, ?, NOW(), 0)';
+        $sql = 'INSERT INTO comments(post_id, id_user, comment, comment_date, valid) VALUES(?, ?, ?, NOW(), 0)';
         $parameters = [$id, $userId, $comment];
         $result = $this->sql($sql, $parameters);
 

@@ -108,10 +108,10 @@ class LoginAccountManager extends Database
      */
     public function registerUser()
     {
-        $satuts = 2;
+        $status = 2;
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $sql = 'INSERT INTO users SET username = ?, password = ?, email = ?, status = ?';
-        $parameters = [$_POST['username'], $password, $_POST['email'], $satuts];
+        $parameters = [$_POST['username'], $password, $_POST['email'], $status];
         $this->sql($sql, $parameters);
 
         $entetemail = "From: Blog Alex  <noreply.blog.alex@gmail.com>\r\n";

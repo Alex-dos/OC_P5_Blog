@@ -50,8 +50,6 @@ abstract class Database
         if ($parameters || $bind) {
             $result = $this->getConnection()->prepare($sql);
 
-
-
             if ($bind) {
                 foreach ($bind as $bindnew) {
                     $result->bindParam($bindnew[0], $bindnew[1], $bindnew[2]);
@@ -63,6 +61,7 @@ abstract class Database
 
             return $result;
         } else {
+
             $result = $this->getConnection()->query($sql);
 
             return $result;
